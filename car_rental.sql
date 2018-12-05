@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2018 at 06:03 AM
+-- Generation Time: Dec 05, 2018 at 08:04 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -41,6 +41,14 @@ CREATE TABLE `car` (
   `reservation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `car`
+--
+
+INSERT INTO `car` (`number_plate`, `category`, `fleet_manager`, `car_type`, `color`, `year_of_production`, `available`, `reservation_id`) VALUES
+('HNZ-301', 1, 'thewashingtoncars@hotmail.com', 4, 'red', 2015, 1, 3),
+('NBM-948', 1, 'thewashingtoncars@hotmail.com', 3, 'blue', 2017, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -59,6 +67,14 @@ CREATE TABLE `car_types` (
   `horsepower` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `car_types`
+--
+
+INSERT INTO `car_types` (`car_type_id`, `manufacturer`, `model`, `cabrio`, `number_of_doors`, `number_of_pass`, `weight`, `manual_trans`, `horsepower`) VALUES
+(3, 'Porsche', 'Carrera', 1, 2, 2, 1300, 1, 300),
+(4, 'Aston Martin', 'DB9', 1, 2, 4, 1500, 0, 600);
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +86,17 @@ CREATE TABLE `cities` (
   `city` varchar(15) NOT NULL,
   `country` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`zip`, `city`, `country`) VALUES
+('1001', 'New York', 'USA'),
+('1002', 'Lomdon', 'UK'),
+('1003', 'Rome', 'Italy'),
+('1004', 'Palma', 'Spain'),
+('1005', 'Athen', 'Greece');
 
 -- --------------------------------------------------------
 
@@ -87,6 +114,17 @@ CREATE TABLE `client` (
   `sex` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `client`
+--
+
+INSERT INTO `client` (`email_address`, `first_name`, `last_name`, `street`, `zip`, `birthday`, `sex`) VALUES
+('amandawhite@hotmail.com', 'Amanda', 'White', 'Giants street', '1003', '1988-06-12', 'female'),
+('collinfarel@bing.com', 'Collin', 'Farrel', 'Asteroid street 18', '1005', '1975-02-01', 'male'),
+('johnwilliam@gmail.com', 'John', 'William', 'Baker street 3', '1001', '1980-01-01', 'male'),
+('michaelfellows@gmail.com', 'Michael', 'Fellows', 'Main Square 10', '1002', '1977-10-10', 'male'),
+('stephenking@yahoo.com', 'Stephen', 'King', 'Horror street 10', '1004', '1971-02-12', 'male');
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +139,15 @@ CREATE TABLE `client_credit_card` (
   `client_email_address` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `client_credit_card`
+--
+
+INSERT INTO `client_credit_card` (`credit_card_number`, `CCV`, `expiry`, `name_on_card`, `client_email_address`) VALUES
+('543525234543543543', '423', '2020-03-03', 'John William', 'johnwilliam@gmail.com'),
+('54365234675687574', '232', '2020-19-17', 'Collin Farrel', 'collinfarel@bing.com'),
+('645674275756765867', '334', '2030-05-05', 'Michael Fellows', 'michaelfellows@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -113,6 +160,15 @@ CREATE TABLE `client_dlicense_doc` (
   `checked` tinyint(1) NOT NULL,
   `client_email_address` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `client_dlicense_doc`
+--
+
+INSERT INTO `client_dlicense_doc` (`dlicense_number`, `image_link`, `checked`, `client_email_address`) VALUES
+('AF53453453', 'image1.jpg', 1, 'collinfarel@bing.com'),
+('NH424242342', '2.jog', 1, 'johnwilliam@gmail.com'),
+('WA212112312', 'Michael Fellows', 1, 'michaelfellows@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -127,6 +183,14 @@ CREATE TABLE `client_id_doc` (
   `client_email_address` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `client_id_doc`
+--
+
+INSERT INTO `client_id_doc` (`ID_doc_number`, `image_link`, `checked`, `client_email_address`) VALUES
+('BB4242432432', '2.jpg', 1, 'collinfarel@bing.com'),
+('KJ4242332', '4.jpg', 1, 'amandawhite@hotmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -138,10 +202,17 @@ CREATE TABLE `client_referents` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `street` varchar(40) NOT NULL,
-  `city` varchar(30) NOT NULL,
   `zip` varchar(10) NOT NULL,
   `birthday` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `client_referents`
+--
+
+INSERT INTO `client_referents` (`email_address`, `first_name`, `last_name`, `street`, `zip`, `birthday`) VALUES
+('referent1@gmail.com', 'Benedict', 'Andrews', 'Baker street 3', '1002', '1971-09-22'),
+('stephenking@yahoo.com', 'Flenegens', 'Annabis', 'Novel street 6', '1004', '1971-09-21');
 
 -- --------------------------------------------------------
 
@@ -156,6 +227,14 @@ CREATE TABLE `fleet_manager` (
   `zip` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `fleet_manager`
+--
+
+INSERT INTO `fleet_manager` (`fleet_email`, `name`, `phone`, `zip`) VALUES
+('thebigfleet@cars.com', 'The Big Car Fleet Corporation', '1231232132', '1003'),
+('thewashingtoncars@hotmail.com', 'The Washington Cars', '12312321', '1005');
+
 -- --------------------------------------------------------
 
 --
@@ -164,12 +243,34 @@ CREATE TABLE `fleet_manager` (
 
 CREATE TABLE `locations` (
   `location_id` int(11) NOT NULL,
-  `country` varchar(50) NOT NULL,
-  `city` varchar(30) NOT NULL,
   `street` varchar(50) NOT NULL,
   `ZIP` varchar(10) NOT NULL,
   `only_return` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `locations`
+--
+
+INSERT INTO `locations` (`location_id`, `street`, `ZIP`, `only_return`) VALUES
+(1, 'Paris Auto Office', '1003', 0),
+(2, 'Greek street 6', '1001', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `query1`
+-- (See below for the actual view)
+--
+CREATE TABLE `query1` (
+`email_address` varchar(30)
+,`first_name` varchar(30)
+,`last_name` varchar(30)
+,`street` varchar(30)
+,`zip` varchar(10)
+,`birthday` date
+,`sex` varchar(6)
+);
 
 -- --------------------------------------------------------
 
@@ -186,6 +287,23 @@ CREATE TABLE `reservation` (
   `return_datetime` datetime NOT NULL,
   `ref_email_address` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`reservation_id`, `cl_email_address`, `pick_up_location`, `return_location`, `pickup_datetime`, `return_datetime`, `ref_email_address`) VALUES
+(1, 'collinfarel@bing.com', 2, 2, '2018-12-09 04:07:05', '2018-12-30 01:08:11', 'referent1@gmail.com'),
+(3, 'michaelfellows@gmail.com', 1, 1, '2018-12-19 02:08:03', '2018-12-27 09:15:00', 'referent1@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `query1`
+--
+DROP TABLE IF EXISTS `query1`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `query1`  AS  select `client`.`email_address` AS `email_address`,`client`.`first_name` AS `first_name`,`client`.`last_name` AS `last_name`,`client`.`street` AS `street`,`client`.`zip` AS `zip`,`client`.`birthday` AS `birthday`,`client`.`sex` AS `sex` from `client` ;
 
 --
 -- Indexes for dumped tables
@@ -279,19 +397,19 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `car_types`
 --
 ALTER TABLE `car_types`
-  MODIFY `car_type_id` smallint(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `car_type_id` smallint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -301,16 +419,9 @@ ALTER TABLE `reservation`
 -- Constraints for table `car`
 --
 ALTER TABLE `car`
-  ADD CONSTRAINT `car_ibfk_1` FOREIGN KEY (`car_type`) REFERENCES `car_types` (`car_type_id`),
-  ADD CONSTRAINT `car_ibfk_2` FOREIGN KEY (`car_type`) REFERENCES `car_types` (`car_type_id`),
-  ADD CONSTRAINT `car_ibfk_3` FOREIGN KEY (`fleet_manager`) REFERENCES `fleet_manager` (`fleet_email`),
-  ADD CONSTRAINT `car_ibfk_4` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`);
-
---
--- Constraints for table `car_types`
---
-ALTER TABLE `car_types`
-  ADD CONSTRAINT `car_types_ibfk_1` FOREIGN KEY (`car_type_id`) REFERENCES `car` (`car_type`);
+  ADD CONSTRAINT `car_ibfk_2` FOREIGN KEY (`car_type`) REFERENCES `car_types` (`car_type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `car_ibfk_3` FOREIGN KEY (`fleet_manager`) REFERENCES `fleet_manager` (`fleet_email`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `car_ibfk_4` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `client_credit_card`
